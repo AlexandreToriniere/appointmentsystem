@@ -7,12 +7,15 @@
     </h1>
         <div class="row">
         @foreach($appointments as $appointment)
-                  <div class="col 1">
-                <h5 class="center">
+                <div class="col 1">
+                    @if(!$appointment['off'])
+                        <h5 class="center">
                     {{$appointment['date']}}
                 </h5>
                 <h5 class="center">
-                    <b> {{$appointment['day_name']}}</b>
+
+                        <b> {{$appointment['day_name']}}</b>
+                    @endif
                 </h5>
     @if(!$appointment['off'])
 

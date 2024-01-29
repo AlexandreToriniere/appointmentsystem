@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AppointmentRequest;
 use Carbon\CarbonPeriod;
 use App\Models\Appointment;
-use App\Models\BusinessHour;
 use App\Services\AppointmentService;
-use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
     public function index()
     {
 
-        $datePeriod = CarbonPeriod::create(now(), now()->addDays(6));
+        $datePeriod = CarbonPeriod::create(now(), now()->addDays(7));
 
         $appointments = [];
 

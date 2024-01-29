@@ -8,6 +8,7 @@ use App\Models\BusinessHour;
 
 
 class AppointmentService{
+
     public function generateTimeData(Carbon $date)
     {
             $dayName = $date->format('l');

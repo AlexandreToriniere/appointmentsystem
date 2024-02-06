@@ -27,7 +27,7 @@ class AppointmentController extends Controller
     {
 
         $data = $request->merge(['user_id'=>auth()->id()])->toArray();
-
+        dd($data);
         Appointment::create($data);
 
         return 'created';

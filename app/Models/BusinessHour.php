@@ -26,7 +26,6 @@ class BusinessHour extends Model
             if ($this->day != today()->format('l')) {
                 return $time->format('H:i');
             }
-
         }, $times);
     }
 }

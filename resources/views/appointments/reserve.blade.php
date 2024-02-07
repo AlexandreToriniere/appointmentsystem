@@ -18,10 +18,11 @@
                             @endif
                     @if(!$appointment['off'])
                         @foreach($appointment['business_hours'] as $time)
-
                             @if (!in_array($time, $appointment['reserved_hours']))
                                 <form action="{{route('reserve')}}" method="post">
                                     @csrf
+                                    {{-- <input type="hidden" name="_token" value= "{{crsf_token}}"> --}}
+                                    <input type="hidden" name="total" value="6">
                                     <input type="hidden" name="date" value=" {{$appointment['full_date']}}">
                                     <input type="hidden" name="time" value="{{$time}}">
                                         <button class="waves-effect waves-light btn info darken-2" type="submit">

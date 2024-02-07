@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AppointmentRequest;
+use Stripe\Stripe;
+use App\Models\User;
 use Carbon\CarbonPeriod;
 use App\Models\Appointment;
+use Stripe\Checkout\Session;
 use App\Services\AppointmentService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AppointmentRequest;
 
 class AppointmentController extends Controller
 {
     public function index()
     {
+
+        $currentuser = Auth::user()->name;
 
         $datePeriod = CarbonPeriod::create(now(), now()->addDays(7));
 
@@ -26,11 +32,18 @@ class AppointmentController extends Controller
     public function reserve(AppointmentRequest $request)
     {
 
-        $data = $request->merge(['user_id'=>auth()->id()])->toArray();
-        dd($data);
-        Appointment::create($data);
+        if(!auth()->check()){
+            return view('auth/login');
+        }else{
+            $data = $request->merge(['user_id'=>auth()->id()])->toArray();
+            Appointment::create($data);
+            return 'created';
+    }
 
-        return 'created';
 
+    }
+
+    public function success(){
+        return "Merci pour votre confiance";
     }
 }

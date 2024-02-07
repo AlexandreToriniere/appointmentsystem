@@ -17,10 +17,12 @@ class AppointmentService{
 
             $hours = array_filter($businessHours->TimesPeriod);
 
+            //Une requête au Model Appointment où on récupère la date. On retourne le champ time avec la fonction pluck() et on finit par retourner le format du résultat de pluck().
             $currentAppointments = Appointment::where('date', $date->toDateString())->pluck('time')->map(function($time){
                 return $time->format('H:i');
             })->toArray();
 
+            // On récupère les valeurs entre deux tableaux. On retiendra les valeurs du tableaux $hours qui ne sont pas dans $currentAppointments
            $availbleHours = array_diff($hours,$currentAppointments);
 
            return [

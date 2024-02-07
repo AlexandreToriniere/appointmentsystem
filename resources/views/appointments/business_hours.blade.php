@@ -7,7 +7,6 @@
     </h1>
 
     <div class="row center">
-
         <form action="{{route('business_hours.update')}}" method="post">
             @csrf
             @foreach($businessHours as $businessHour)

@@ -6,6 +6,8 @@
       Available Appointments
     </h1>
         <div class="row">
+            <h2 class="text-black">{{$service->name}}</h2>
+            <h2 class="text-black">{{$service->price}}€</h2>
             @foreach($appointments as $appointment)
                 <div class="col 1">
                             @if(!$appointment['off'])
@@ -19,12 +21,12 @@
                     @if(!$appointment['off'])
                         @foreach($appointment['business_hours'] as $time)
                             @if (!in_array($time, $appointment['reserved_hours']))
-                                <form action="{{route('reserve')}}" method="post">
-                                    @csrf
-                                    {{-- <input type="hidden" name="_token" value= "{{crsf_token}}"> --}}
-                                    <input type="hidden" name="total" value="6">
+                                <form action="/session" method="post">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <input type="hidden" name="date" value=" {{$appointment['full_date']}}">
                                     <input type="hidden" name="time" value="{{$time}}">
+                                    <input type="hidden" name="servicename" value="{{$service->name}}">
+                                    <input type="hidden" name="price" value="{{$service->price}}">
                                         <button class="waves-effect waves-light btn info darken-2" type="submit">
                                             {{$time}}
                                         </button>

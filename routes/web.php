@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\BusinessHour;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BusinessHourController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -19,15 +19,24 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
+Route::post('/success/{date}/{time}',[ServiceController::class, 'success'])->name('reserve.success');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('business-hours', [BusinessHourController::class, 'index']);
-Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
-Route::get('reserve', [AppointmentController::class, 'index']);
-Route::post('reserve', [AppointmentController::class, 'reserve'])->name('reserve');
-Route::get('/success',[AppointmentController::class, 'success'])->name('success');
+
+Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/{service}', [ServiceController::class, 'show'])->name('services_show');
+
+
+//Checkout//
+Route::post('/session',[ServiceController::class,'session' ])->name('session');
+
+
+Route::get('/reserve', [AppointmentController::class, 'index'])->name('appointment');
+Route::post('/reserve', [AppointmentController::class, 'reserve'])->name('reserve');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

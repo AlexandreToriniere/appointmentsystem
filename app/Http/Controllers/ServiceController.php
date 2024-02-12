@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Services\AppointmentService;
 use App\Http\Requests\AppointmentRequest;
-use App\Models\BusinessHour;
 
 class ServiceController extends Controller
 {
@@ -77,8 +76,6 @@ class ServiceController extends Controller
 
     public function success(AppointmentRequest $request)
     {
-        dd($request);
-
         $data = $request->merge(['user_id'=>auth()->id()])->toArray();
         Appointment::create($data);
         return 'created';

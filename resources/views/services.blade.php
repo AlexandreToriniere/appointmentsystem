@@ -40,10 +40,6 @@
           </div>
           <div class="site-mobile-menu-body"></div>
         </div>
-
-
-
-
         <header class="site-navbar py-1" role="banner">
 
           <div class="container-fluid">

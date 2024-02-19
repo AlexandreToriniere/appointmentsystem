@@ -6,8 +6,10 @@
       Available Appointments
     </h1>
         <div class="row">
-            <h2 class="text-black">{{$service->name}}</h2>
-            <h2 class="text-black">{{$service->price}}€</h2>
+            <div>
+                <h2 class="text-black">{{$service->name}}</h2>
+                <h2 class="text-black">{{$service->price}}€</h2>
+            </div>
             @foreach($appointments as $appointment)
                 <div class="col 1">
                             @if(!$appointment['off'])

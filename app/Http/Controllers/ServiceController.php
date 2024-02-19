@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Stripe\Stripe;
 use App\Models\Service;
 use Carbon\CarbonPeriod;
+use Jenssegers\Date\Date;
 use App\Models\Appointment;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Services\AppointmentService;
@@ -21,12 +22,12 @@ class ServiceController extends Controller
     }
 
     public function show($slug){
-
+        Carbon::setLocale('fr');
         $service = Service::where('slug', $slug)->firstorFail();
         $cartCollection = \Cart::getContent();
 
         $datePeriod = CarbonPeriod::create(now(), now()->addDays(7));
-
+        // dd($datePeriod);
         $appointments = [];
 
         foreach ($datePeriod as $date) {

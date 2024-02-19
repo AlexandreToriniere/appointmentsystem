@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+
 use Carbon\Carbon;
 use App\Models\Appointment;
 use App\Models\BusinessHour;
@@ -11,10 +12,11 @@ class AppointmentService{
 
     public function generateTimeData(Carbon $date)
     {
-            $dayName = $date->format('l');
 
+
+            $dayName = $date->isoFormat('dddd');
             $businessHours = BusinessHour::where('day',$dayName)->first();
-
+            // dd($dayName);
             $hours = array_filter($businessHours->TimesPeriod);
 
             //Une requête au Model Appointment où on récupère la date. On retourne le champ time avec la fonction pluck() et on finit par retourner le format du résultat de pluck().

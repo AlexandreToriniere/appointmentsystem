@@ -1,12 +1,12 @@
 <?php
 return [
     'days' =>[
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
+        'Dimanche',
+        'Lundi',
+        'Mardi',
+        'Mercredi',
+        'Jeudi',
+        'Vendredi',
+        'Samedi'
     ]
 ];

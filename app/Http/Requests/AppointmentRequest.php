@@ -32,7 +32,7 @@ class AppointmentRequest extends FormRequest
     public function isValid()
     {
 
-        $dayName = $this->date('date')->format('l');
+        $dayName = $this->date('date')->isoformat('dddd');
         $businessHours = BusinessHour::where('day', $dayName)->first()->TimesPeriod;
 
         if (!in_array($this->input('time'), $businessHours)) {
